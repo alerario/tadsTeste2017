@@ -18,6 +18,10 @@ public class AppBL {
         // TODO code application logic here
         System.out.println("Ola mundo!");
         int x = 10;
+        
+        for(int i=0; i<x; i++){
+            System.out.println("coisa doida");
+        }
     }
     
 }

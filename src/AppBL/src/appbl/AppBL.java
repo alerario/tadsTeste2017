@@ -26,7 +26,8 @@ public class AppBL {
         System.out.println("fritador de cpu");
         for(int i=0; i<999999; i++){
             System.out.println("i: " +i*i);
-            
+        
+        System.out.println("Churrasqueira Controle Remoto");
         }
     }
     

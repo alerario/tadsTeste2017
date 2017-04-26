@@ -18,7 +18,7 @@ public class AppBL {
         // TODO code application logic here
         System.out.println("Pedro modificou!");
         System.out.println("TESTEEEE");
-        System.out.println("NOVAMENTE");
+        System.out.println("NOVAMENTE teste");
         int x = 10;
     }
     

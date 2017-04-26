@@ -28,6 +28,7 @@ public class AppBL {
             System.out.println("i: " +i*i);
         
         System.out.println("Churrasqueira Controle Remoto");
+            System.out.println("TÁ PEGANDO FOGO BITCHO!");
         }
     }
     

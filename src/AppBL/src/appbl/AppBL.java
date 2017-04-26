@@ -23,8 +23,10 @@ public class AppBL {
             System.out.println("coisa doida");
         }
         
+        System.out.println("fritador de cpu");
         for(int i=0; i<999999; i++){
-            System.out.println("fritador de cpu");
+            System.out.println("i: " +i*i);
+            
         }
     }
     

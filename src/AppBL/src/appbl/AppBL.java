@@ -17,8 +17,8 @@ public class AppBL {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Pedro modificou!");
-        System.out.println("TESTEEEE");
-        System.out.println("vlfkvlfdvkdflk");
+        System.out.println("TESTEeeeEEE");
+        System.out.println("vlfkvlfdvkdflffffffffk");
         
         int x = 10;
     }

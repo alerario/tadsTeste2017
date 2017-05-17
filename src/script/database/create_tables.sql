@@ -1,4 +1,3 @@
-﻿drop table public.cidade;
 CREATE TABLE public.cidade
 (
   codigo integer NOT NULL,

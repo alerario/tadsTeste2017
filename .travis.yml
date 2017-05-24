@@ -1,12 +1,14 @@
 services:
 - postgresql
 before_script:
- - psql -c 'create database teste;' -U postgres
- - psql -U postgres -d teste -f src/script/database/create_tables.sql
- - psql -U postgres -d teste -f src/script/database/fill_tables.sql
- - cd src/Tads2017
-# - ls
+- psql -c 'create database teste;' -U postgres
+- psql -U postgres -d teste -f src/script/database/create_tables.sql
+- psql -U postgres -d teste -f src/script/database/fill_tables.sql
+- cd src/Tads2017
 language: java
 jdk:
-  - oraclejdk8
+- oraclejdk8
 script: mvn clean verify -DskipTests=false -DskipITs=false -DskipSTs=false
+deploy:
+  api_key:
+    secure: DuoxGAqFIRjigApvy/1fz6/ZGjEkKSuADXVOEf442co7pYop3DvikM2DTtKU7wzGIXPQ2gyyZZsrr8mclT+WX6RTJxGsKEuEalabKpFiQA6/IFcmxhFXbJeJOqWbipDQAxJiUOd+AOR7WaqZtGdNeQZIli9/wbE4gyfIokQVX1tFff+wImcA8mIffs44PbTy1USN0wXHwi7iRvy+eWErVZHng1/P04+e37bPnVYBQCN6g1Gana7p/ddT0ngcAjhNIRFmZMN/USmIn/t8j9Pqw0kppML5jsXZsip46DhYyZ6MIoDX3sfIKdz2YIvkDy4OjqVyd4J7aSwo/RNIbQnrGt2BKi4UWpxNKaVnwDoQ9Eof2hdxsAU0sbBxJo6PQrMRiKZi9sOGFFSRYh0ov8SzHL+Bpzq8suF48Z6o1yAVxkdynNnfkQPTD0S6TwI1tyreCCGTAFX3tHtdHtW3FNpK5wjSLn5eiboxpVWeJ+5qy7Kbpz3ivlry/vPzCipiujUklvUJUl/9IxfZm+7bMoShS5EP8XnuU/Kq0y6a19xyjdRvT9FbTWrxuL3cucCvnY9YDwdM+uLF/J4eVl5ELMgg0jPRnfxtvaFFgVQNZzkpG5plCPxr8LpanI7Td/2HHpJtKt19Z+V6/DdjlngGuYwf2NT02DuMOYY2SS38yebRFds=

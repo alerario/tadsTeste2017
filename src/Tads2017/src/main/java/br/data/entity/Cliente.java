@@ -6,35 +6,31 @@
 package br.data.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author utfpr
+ * @author alexandrelerario
  */
 @Entity
-@Table(name = "cidade")
+@Table(name = "cliente")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cidade.findAll", query = "SELECT c FROM Cidade c")
-    , @NamedQuery(name = "Cidade.findByCodigo", query = "SELECT c FROM Cidade c WHERE c.codigo = :codigo")
-    , @NamedQuery(name = "Cidade.findByNome", query = "SELECT c FROM Cidade c WHERE c.nome = :nome")})
-public class Cidade implements Serializable {
-
-    @OneToMany(mappedBy = "cidade")
-    private Collection<Cliente> clienteCollection;
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
+    , @NamedQuery(name = "Cliente.findByCodigo", query = "SELECT c FROM Cliente c WHERE c.codigo = :codigo")
+    , @NamedQuery(name = "Cliente.findByNome", query = "SELECT c FROM Cliente c WHERE c.nome = :nome")})
+public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,14 +38,17 @@ public class Cidade implements Serializable {
     @NotNull
     @Column(name = "codigo")
     private Integer codigo;
-    @Size(max = 40)
+    @Size(max = 60)
     @Column(name = "nome")
     private String nome;
+    @JoinColumn(name = "cidade", referencedColumnName = "codigo")
+    @ManyToOne
+    private Cidade cidade;
 
-    public Cidade() {
+    public Cliente() {
     }
 
-    public Cidade(Integer codigo) {
+    public Cliente(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -69,6 +68,14 @@ public class Cidade implements Serializable {
         this.nome = nome;
     }
 
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -79,10 +86,10 @@ public class Cidade implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cidade)) {
+        if (!(object instanceof Cliente)) {
             return false;
         }
-        Cidade other = (Cidade) object;
+        Cliente other = (Cliente) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
@@ -91,16 +98,7 @@ public class Cidade implements Serializable {
 
     @Override
     public String toString() {
-        return "br.data.entity.Cidade[ codigo=" + codigo + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Cliente> getClienteCollection() {
-        return clienteCollection;
-    }
-
-    public void setClienteCollection(Collection<Cliente> clienteCollection) {
-        this.clienteCollection = clienteCollection;
+        return "br.data.entity.Cliente[ codigo=" + codigo + " ]";
     }
     
 }

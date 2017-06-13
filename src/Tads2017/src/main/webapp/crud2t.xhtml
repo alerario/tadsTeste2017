@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1> Cadastrar clientes </h1>
+     
+        <h:form>
+            <h:commandButton value="Novo" action="#{jsfCliente.setNovo(true)}"/>
+            <h:commandButton value="Listar" action="#{jsfCliente.setListar(true)}"/>
+        </h:form>
+        
+        <h:form rendered="#{jsfCliente.novo}">
+           codigo <h:inputText value="#{jsfCliente.codigo}"/> <br/>
+           nome  <h:inputText value="#{jsfCliente.nome}"/> <br/>
+           cidade <h:selectOneMenu value="#{jsfCliente.cidade}"> 
+                <f:selectItems value="#{jsfCidade.all}" var="cid" itemLabel="#{cid.nome}" itemValue="#{cid.codigo}"/>
+           </h:selectOneMenu>
+           <br/>     
+           <h:commandButton value="Salvar " action="#{jsfCliente.persist()}" /> 
+        </h:form>
+        
+        
+         <h:form rendered="#{jsfCliente.edit}">
+           codigo <h:inputText value="#{jsfCliente.codigo}" readonly="#{jsfCliente.edit}"/> <br/>
+           nome  <h:inputText value="#{jsfCliente.nome}"/> <br/>
+           cidade <h:selectOneMenu value="#{jsfCliente.cidade}"> 
+                <f:selectItems value="#{jsfCidade.all}" var="cid" itemLabel="#{cid.nome}" itemValue="#{cid.codigo}"/>
+           </h:selectOneMenu>
+           <br/>
+           <h:commandButton value="Atualizar registro" action="#{jsfCliente.merge()}"  /> 
+        </h:form>
+        
+        <h:form rendered="#{jsfCliente.listar}">
+            <h:dataTable value="#{jsfCliente.all}" var="cli">
+                <h:column>
+                    <h:outputText value="#{cli.codigo}"/>
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{cli.nome}"/>
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{cli.cidade.nome}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton  value="excluir" onclick="return confirm('Excluir realmente');"  action="#{jsfCliente.remove(cli)}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton  value="editar"  action="#{jsfCliente.editar(cli)}"/>
+                </h:column>
+            </h:dataTable>
+            
+        </h:form>
+        
+    </h:body>
+</html>
+
